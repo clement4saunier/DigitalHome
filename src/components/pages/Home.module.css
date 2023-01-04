@@ -1,0 +1,16 @@
+.gridTech, .gridProjects, .gridExperiences {
+    display: grid;
+    gap: var(--space-l);
+}
+
+.gridTech {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.gridProjects {
+    grid-template-columns: 1fr;
+}
+
+.gridExperiences {
+    grid-template-columns: 1fr;
+}

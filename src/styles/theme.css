@@ -1,0 +1,43 @@
+:root {
+    /* primary */
+    --color-background: #1c1d21;
+    --color-background-light: #2e3036;
+    --color-text: white;
+    --color-text-light: #bbbbbb;
+    
+    /* foreground */
+    --color-foreground: white;
+    --color-foreground-light: rgb(196, 196, 196);
+
+    --color-background-secondary: #4d6c95;
+    --color-text-secondary: white;
+    --color-text-secondary-light: rgb(187, 187, 187);
+  
+    /* interaction */
+    --color-interaction-hover: #698ab6;
+    --color-interaction-active: #385479;
+  
+    /* special */
+    --color-error: rgb(221, 79, 79);
+    --color-success: rgb(105, 172, 105);
+  
+    /* spacing */
+    --space-s: 2px;
+    --space-m: 4px;
+    --space-l: 8px;
+  
+    /* shapes */
+    --radius-s: 4px;
+    --radius-m: 8px;
+    --radius-l: 16px;
+
+    /* border */
+    --width-border: 1px;
+    --color-border: rgba(255, 255, 255, 0.103);
+  
+    /* animation */
+    --duration-fast: 100ms;
+    --duration-slow: 500ms;
+
+    overflow: hidden;
+  }

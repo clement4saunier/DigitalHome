@@ -1,0 +1,59 @@
+.page {
+  overflow: hidden;
+  overflow-y: scroll;
+  background-color: var(--color-background);
+  flex: 1;
+}
+
+.page > *:first-child {
+  min-height: 100%;
+}
+
+.page > *:not(footer),
+footer > * {
+  width: min(calc(100% - var(--space-l) * 2), 1000px);
+  margin-inline: auto;
+}
+
+p {
+    color: var(--color-foreground-light);
+}
+
+.card {
+    border-radius: var(--radius-m);
+    border-color: var(--color-border);
+    border-width: var(--width-border);
+    border-style: solid;
+    background-color: var(--color-background-light);
+    padding: var(--space-l);
+}
+
+button {
+    border-radius: var(--radius-m);
+    border-color: var(--color-border);
+    border-width: var(--width-border);
+    border-style: solid;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    padding: var(--space-l);
+    padding-inline: var(--space-l);
+    cursor: pointer;
+    transition-duration: var(--duration-fast);
+}
+
+button:hover {
+    background-color: var(--color-background-light);
+}
+
+button:active {
+    background-color: var(--color-background);
+    color: var(--color-foreground-light);
+}
+
+img {
+    border-radius: var(--radius-m);
+    border-color: var(--color-border);
+    border-width: var(--width-border);
+    border-style: solid;
+    background-color: var(--color-background);
+}
