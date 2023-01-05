@@ -67,6 +67,7 @@ button {
   padding-inline: var(--space-l);
   cursor: pointer;
   transition-duration: var(--duration-fast);
+  margin-inline: var(--space-s);
 }
 
 button:hover {

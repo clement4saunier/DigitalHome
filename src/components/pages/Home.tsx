@@ -23,19 +23,35 @@ import quickstarterLogo from "../../assets/icons/quickstarter.png";
 import websiteLogo from "../../assets/icons/website.png";
 
 const Home: Component = () => (
-  <Page header={<header><div className="divider"><div></div></div></header>}>
+  <Page
+    header={
+      <header>
+        <div className="divider">
+          <div></div>
+        </div>
+      </header>
+    }
+  >
     <div className={styles.lifted}>
       <Profile
         footer={
           <>
-            <button>Twitter</button>
-            <button>Github</button>
+            <button>LinkedIn</button>
+            <button>Mail</button>
           </>
         }
       >
         <h1>Clément SAUNIER</h1>
         <p>
-          Hi 👋, I'm a developer interested in blockchain technology and gaming.
+          Hi 👋, I'm a fullstack blockchain developer with a background in game
+          development. I dug deep into Ethereum and blockchain technology in
+          2021 by building a decentralized project from scratch, and am now a
+          strong believer in the power of decentralized open-source cryptography
+          to build a trusted and private online realm.
+          <br />
+          <br />
+          If you're looking for someone to work on your exciting project, please
+          contact me with one of the following means:
         </p>
       </Profile>
     </div>
@@ -46,25 +62,25 @@ const Home: Component = () => (
         footer={<Tags values={["Javascript", "Typescript"]} />}
       >
         <h2>React.js</h2>
-        <p>Front-end development framework</p>
+        <p>Front-end development framework.</p>
       </ImageCard>
       <ImageCard
         src={solidLogo}
         footer={<Tags values={["Javascript", "Typescript"]} />}
       >
         <h2>Solid.js</h2>
-        <p>Front-end development framework</p>
+        <p>Front-end development framework.</p>
       </ImageCard>
       <ImageCard
         src={nextLogo}
         footer={<Tags values={["Javascript", "Typescript"]} />}
       >
         <h2>Next.js</h2>
-        <p>Front-end development framework</p>
+        <p>Front-end development framework.</p>
       </ImageCard>
       <ImageCard src={solidityLogo}>
         <h2>Solidity</h2>
-        <p>Smart contract development language for EVM-based blockchains</p>
+        <p>Smart contract development language for EVM-based blockchains.</p>
       </ImageCard>
       <ImageCard src={ipfsLogo}>
         <h2>IPFS</h2>
@@ -99,7 +115,7 @@ const Home: Component = () => (
         }
       >
         <h2>Vaulth</h2>
-        <p>Decentralized certificate of authenticity mangagment plaform</p>
+        <p>Decentralized certificate of authenticity mangagment plaform.</p>
       </ImageCard>
       <ImageCard
         src={quickstarterLogo}
@@ -108,7 +124,7 @@ const Home: Component = () => (
         <h2>Quickstarter</h2>
         <p>
           Decentralized crowd-funding and community project management for
-          #StartonHackathon
+          #StartonHackathon.
         </p>
       </ImageCard>
       <ImageCard
@@ -118,7 +134,7 @@ const Home: Component = () => (
         <h2>Defacto</h2>
         <p>
           Decentralized fact-checking and journalism platform for
-          #StartonHackaton
+          #StartonHackaton.
         </p>
       </ImageCard>
     </div>
@@ -131,7 +147,9 @@ const Home: Component = () => (
         }
       >
         <h2>{"{EPITECH.}"}</h2>
-        <p>Master in software development</p>
+        <p>
+          Education · 2018 → 2024 <br /> <br />Master in software development.
+        </p>
       </ImageCard>
       <ImageCard
         src={breakfirstLogo}
@@ -139,6 +157,7 @@ const Home: Component = () => (
       >
         <h2>Unity developer @ BreakFirst</h2>
         <p>
+          Internship · Sep 2019 → Dec 2019 <br /><br />
           Feature development for prototypes on Nintendo Switch and Mobile
           platforms.
         </p>
@@ -152,7 +171,9 @@ const Home: Component = () => (
         }
       >
         <h2>Solidity/React developer @ B2Expand</h2>
-        <p>Full-stack development of NFT-related projects</p>
+        <p>
+        Internship · Apr 2022 → Jul 2024 <br/><br />
+          Full-stack development of NFT-related projects.</p>
       </ImageCard>
     </div>
   </Page>
