@@ -26,6 +26,18 @@ header {
   display: flex;
 }
 
+footer {
+  margin-top: calc(var(--space-l) * 3);
+  padding-top: var(--space-l);
+  padding-bottom: var(--space-l);
+  margin-bottom: 0;
+  color: var(--color-border-top);
+  background-color: var(--color-background-dark);
+  border-top: 2px solid var(--color-border-top);
+  flex-direction: column-reverse;
+  display: flex;
+}
+
 .divider {
   display: flex;
   height: 0;
