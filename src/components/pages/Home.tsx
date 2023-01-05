@@ -23,24 +23,22 @@ import quickstarterLogo from "../../assets/icons/quickstarter.png";
 import websiteLogo from "../../assets/icons/website.png";
 
 const Home: Component = () => (
-  <Page>
-    <h1>Sheykei's Digital Home</h1>
-    <p>
-      My personal website, including projects, portfolio, social links etc...
-    </p>
-    <Profile
-      footer={
-        <>
-          <button>Twitter</button>
-          <button>Github</button>
-        </>
-      }
-    >
-      <h1>Clément SAUNIER</h1>
-      <p>
-        Hi 👋, I'm a developer interested in blockchain technology and gaming.
-      </p>
-    </Profile>
+  <Page header={<header><div className="divider"><div></div></div></header>}>
+    <div className={styles.lifted}>
+      <Profile
+        footer={
+          <>
+            <button>Twitter</button>
+            <button>Github</button>
+          </>
+        }
+      >
+        <h1>Clément SAUNIER</h1>
+        <p>
+          Hi 👋, I'm a developer interested in blockchain technology and gaming.
+        </p>
+      </Profile>
+    </div>
     <h1>Favorite Stack</h1>
     <div className={styles.gridTech}>
       <ImageCard
@@ -50,11 +48,17 @@ const Home: Component = () => (
         <h2>React.js</h2>
         <p>Front-end development framework</p>
       </ImageCard>
-      <ImageCard src={solidLogo} footer={<Tags values={["Javascript", "Typescript"]} />}>
+      <ImageCard
+        src={solidLogo}
+        footer={<Tags values={["Javascript", "Typescript"]} />}
+      >
         <h2>Solid.js</h2>
         <p>Front-end development framework</p>
       </ImageCard>
-      <ImageCard src={nextLogo} footer={<Tags values={["Javascript", "Typescript"]} />}>
+      <ImageCard
+        src={nextLogo}
+        footer={<Tags values={["Javascript", "Typescript"]} />}
+      >
         <h2>Next.js</h2>
         <p>Front-end development framework</p>
       </ImageCard>
@@ -73,22 +77,44 @@ const Home: Component = () => (
     </div>
     <h1>Projects</h1>
     <div className={styles.gridProjects}>
-      <ImageCard src={websiteLogo} footer={<Tags values={["Typescript", "Solid.js"]} />}>
+      <ImageCard
+        src={websiteLogo}
+        footer={<Tags values={["Typescript", "Solid.js"]} />}
+      >
         <h2>This website</h2>
         <p>Portfolio website</p>
       </ImageCard>
-      <ImageCard src={vaulthLogo} footer={<Tags values={["Javascript", "Solidity", "React.js", "React Native", "Ipfs"]} />}>
+      <ImageCard
+        src={vaulthLogo}
+        footer={
+          <Tags
+            values={[
+              "Javascript",
+              "Solidity",
+              "React.js",
+              "React Native",
+              "Ipfs"
+            ]}
+          />
+        }
+      >
         <h2>Vaulth</h2>
         <p>Decentralized certificate of authenticity mangagment plaform</p>
       </ImageCard>
-      <ImageCard src={quickstarterLogo} footer={<Tags values={["Javascript", "React.js", "Ipfs"]} />}>
+      <ImageCard
+        src={quickstarterLogo}
+        footer={<Tags values={["Javascript", "React.js", "Ipfs"]} />}
+      >
         <h2>Quickstarter</h2>
         <p>
           Decentralized crowd-funding and community project management for
           #StartonHackathon
         </p>
       </ImageCard>
-      <ImageCard src={defactoLogo} footer={<Tags values={["Javascript", "React.js", "Ipfs"]} />}>
+      <ImageCard
+        src={defactoLogo}
+        footer={<Tags values={["Javascript", "React.js", "Ipfs"]} />}
+      >
         <h2>Defacto</h2>
         <p>
           Decentralized fact-checking and journalism platform for
@@ -98,18 +124,33 @@ const Home: Component = () => (
     </div>
     <h1>Experiences</h1>
     <div className={styles.gridExperiences}>
-      <ImageCard src={epitechLogo} footer={<Tags values={["C", "C++", "Python", "Haskell", "Javascript"]} />}>
+      <ImageCard
+        src={epitechLogo}
+        footer={
+          <Tags values={["C", "C++", "Python", "Haskell", "Javascript"]} />
+        }
+      >
         <h2>{"{EPITECH.}"}</h2>
         <p>Master in software development</p>
       </ImageCard>
-      <ImageCard src={breakfirstLogo} footer={<Tags values={["C#", "Unity"]} />}>
+      <ImageCard
+        src={breakfirstLogo}
+        footer={<Tags values={["C#", "Unity"]} />}
+      >
         <h2>Unity developer @ BreakFirst</h2>
         <p>
           Feature development for prototypes on Nintendo Switch and Mobile
           platforms.
         </p>
       </ImageCard>
-      <ImageCard src={b2expandLogo} footer={<Tags values={["Javascript", "Solidity", "React.js", "Next.js", "Ipfs"]} />}>
+      <ImageCard
+        src={b2expandLogo}
+        footer={
+          <Tags
+            values={["Javascript", "Solidity", "React.js", "Next.js", "Ipfs"]}
+          />
+        }
+      >
         <h2>Solidity/React developer @ B2Expand</h2>
         <p>Full-stack development of NFT-related projects</p>
       </ImageCard>

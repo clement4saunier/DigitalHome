@@ -14,3 +14,15 @@
 .gridExperiences {
     grid-template-columns: 1fr;
 }
+
+.lifted {
+    display: flex;
+    height: 0;
+    align-items: center;
+    width: 100%;
+    padding-bottom: calc(151px / 2);
+}
+
+.lifted > * {
+    width: inherit;
+}

@@ -4,9 +4,12 @@ import styles from "./App.module.css";
 
 const App: Component = () => {
   return (
+    <>
+    <div className={styles.noise}></div>
     <div className={styles.App}>
       <Home />
     </div>
+    </>
   );
 };
 

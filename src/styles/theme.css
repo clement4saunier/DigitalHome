@@ -2,6 +2,7 @@
     /* primary */
     --color-background: #1c1d21;
     --color-background-light: #2e3036;
+    --color-background-dark:rgb(7, 7, 7);
     --color-text: white;
     --color-text-light: #bbbbbb;
     
@@ -32,8 +33,12 @@
     --radius-l: 16px;
 
     /* border */
-    --width-border: 1px;
+    --width-border: 2px;
     --color-border: rgba(255, 255, 255, 0.103);
+    --color-border-top: rgb(255 255 255 / 16%);
+    --color-border-bottom: rgba(255, 255, 255, 0.103);
+    --color-border-left: rgba(255, 255, 255, 0.103);
+    --color-border-right: rgba(255, 255, 255, 0.103);
   
     /* animation */
     --duration-fast: 100ms;
