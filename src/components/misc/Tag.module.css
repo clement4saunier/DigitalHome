@@ -3,4 +3,11 @@
     border-radius: var(--radius-s);
     padding: var(--space-s);
     padding-inline: var(--space-m);
+    white-space: nowrap;
+}
+
+.tags {
+    display: flex;
+    gap: var(--space-m);
+    flex-wrap: wrap;
 }

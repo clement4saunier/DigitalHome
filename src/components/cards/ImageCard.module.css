@@ -1,24 +1,32 @@
 .layout {
-    display: grid;
-    grid-template-columns: 96px auto;
-    gap: var(--space-l);
+  display: grid;
+  grid-template-columns: 96px auto;
+  gap: var(--space-l);
 }
 
+@media only screen and (max-width: 700px) {
+  .layout {
+    grid-template-columns: 100%;
+    grid-template-rows: auto 1fr;
+  }
+}
 
 .layout > img {
-    aspect-ratio: 1 / 1;
-    width: 100%;
-    max-width: 100%;
-    max-height: 100%;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
 }
 
-.layout > div h1, .content h2, .content p {
-    margin: 0;
+.layout > div h1,
+.content h2,
+.content p {
+  margin: 0;
 }
 
 .content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: var(--space-l);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-l);
 }
