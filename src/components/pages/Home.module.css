@@ -27,6 +27,19 @@
     width: inherit;
 }
 
+.divider {
+  border-bottom: 2px solid var(--color-border-bottom);
+  height: var(--space-xl);
+}
+
+.graphic {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-border-bottom);
+}
+
 @media only screen and (max-width: 700px) {
     .gridProjects, .gridExperiences {
       grid-template-columns: 1fr 1fr;

@@ -39,72 +39,70 @@ const Home: Component = () => {
     <Page
       header={
         <header>
-          <div className="divider">
-            <div></div>
-          </div>
+          <Profile
+            ref={liftedProfileRef}
+            footer={
+              <>
+                <button>LinkedIn</button>
+                <button>Mail</button>
+              </>
+            }
+          >
+            <h1>Clément SAUNIER</h1>
+            <p>
+              Hi 👋, I'm a fullstack blockchain developer with a background in
+              game development. I dug deep into Ethereum and blockchain
+              technology in 2021 by building a decentralized project from
+              scratch, and am now a strong believer in the power of
+              decentralized open-source cryptography to build a trusted and
+              private online realm.
+              <br />
+              <br />
+              If you're looking for someone to work on your exciting project,
+              please contact me with one of the following means:
+            </p>
+          </Profile>
+          <div className={styles.graphic}>[something]</div>
         </header>
       }
     >
-      <div className={styles.lifted} style={{"padding-bottom": `calc(${profileHeight()}px / 2)`}}>
-        <Profile
-          ref={liftedProfileRef}
-          footer={
-            <>
-              <button>LinkedIn</button>
-              <button>Mail</button>
-            </>
-          }
-        >
-          <h1>Clément SAUNIER</h1>
-          <p>
-            Hi 👋, I'm a fullstack blockchain developer with a background in
-            game development. I dug deep into Ethereum and blockchain technology
-            in 2021 by building a decentralized project from scratch, and am now
-            a strong believer in the power of decentralized open-source
-            cryptography to build a trusted and private online realm.
-            <br />
-            <br />
-            If you're looking for someone to work on your exciting project,
-            please contact me with one of the following means:
-          </p>
-        </Profile>
-      </div>
+      <div className={styles.divider}></div>
       <h1>Favorite Stack</h1>
       <div className={styles.gridTech}>
-      <ImageCard
-        src={reactLogo}
-        footer={<Tags values={["Javascript", "Typescript"]} />}
-      >
-        <h2>React.js</h2>
-        <p>Front-end development framework.</p>
-      </ImageCard>
-      <ImageCard
-        src={solidLogo}
-        footer={<Tags values={["Javascript", "Typescript"]} />}
-      >
-        <h2>Solid.js</h2>
-        <p>Front-end development framework.</p>
-      </ImageCard>
-      <ImageCard
-        src={nextLogo}
-        footer={<Tags values={["Javascript", "Typescript"]} />}
-      >
-        <h2>Next.js</h2>
-        <p>Front-end development framework.</p>
-      </ImageCard>
-      <ImageCard src={solidityLogo}>
-        <h2>Solidity</h2>
-        <p>Smart contract development language for EVM-based blockchains.</p>
-      </ImageCard>
-      <ImageCard src={ipfsLogo}>
-        <h2>IPFS</h2>
-        <p>Peer-to-peer file management system.</p>
-      </ImageCard>
-      <ImageCard src={unityLogo} footer={<Tags values={["C#"]} />}>
-        <h2>Unity</h2>
-        <p>Game engine.</p>
-      </ImageCard>
-    </div>
+        <ImageCard
+          src={reactLogo}
+          footer={<Tags values={["Javascript", "Typescript"]} />}
+        >
+          <h2>React.js</h2>
+          <p>Front-end development framework.</p>
+        </ImageCard>
+        <ImageCard
+          src={solidLogo}
+          footer={<Tags values={["Javascript", "Typescript"]} />}
+        >
+          <h2>Solid.js</h2>
+          <p>Front-end development framework.</p>
+        </ImageCard>
+        <ImageCard
+          src={nextLogo}
+          footer={<Tags values={["Javascript", "Typescript"]} />}
+        >
+          <h2>Next.js</h2>
+          <p>Front-end development framework.</p>
+        </ImageCard>
+        <ImageCard src={solidityLogo}>
+          <h2>Solidity</h2>
+          <p>Smart contract development language for EVM-based blockchains.</p>
+        </ImageCard>
+        <ImageCard src={ipfsLogo}>
+          <h2>IPFS</h2>
+          <p>Peer-to-peer file management system.</p>
+        </ImageCard>
+        <ImageCard src={unityLogo} footer={<Tags values={["C#"]} />}>
+          <h2>Unity</h2>
+          <p>Game engine.</p>
+        </ImageCard>
+      </div>
       <h1>Projects</h1>
       <div className={styles.gridProjects}>
         <ImageCard

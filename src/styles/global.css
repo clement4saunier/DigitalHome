@@ -9,7 +9,8 @@
 }
 
 .page > *:not(footer):not(header),
-footer > * {
+footer > *,
+.page > header > * {
   width: min(calc(100% - var(--space-l) * 2), 1000px);
   margin-inline: auto;
 }
@@ -19,11 +20,15 @@ p {
 }
 
 header {
-  min-height: 40vh;
+  min-height: calc(100vh - var(--space-xl));
   background-color: var(--color-background-dark);
+
   border-bottom: 2px solid var(--color-border-top);
   flex-direction: column-reverse;
   display: flex;
+  padding-bottom: var(--space-xl);
+  box-sizing: border-box;
+  gap: var(--space-xl);
 }
 
 footer {
@@ -60,12 +65,18 @@ footer {
   border-bottom-color: var(--color-border-bottom);
   border-width: var(--width-border);
   border-style: solid;
-  background-color: #2e30368a;
+  /* background-color: #2e30368a; */
   padding: var(--space-l);
   box-shadow: 0 4px 24px 0 rgba(39, 38, 38, 0.226);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   border-radius: 10px;
+  background: linear-gradient(
+    0deg,
+    #2e30368a 10%,
+    #2e30368a 50%,
+    #3032388a 95%
+  );
 }
 
 button {
