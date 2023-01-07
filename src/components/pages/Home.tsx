@@ -23,6 +23,8 @@ import defactoLogo from "../../assets/icons/defacto.png";
 import quickstarterLogo from "../../assets/icons/quickstarter.png";
 import websiteLogo from "../../assets/icons/website.png";
 
+import PixelatedEthereum from "../frontshow/PixelatedEthereum.jsx";
+
 const Home: Component = () => {
   let liftedProfileRef;
   const [profileHeight, setProfileHeight] = createSignal(191);
@@ -62,7 +64,9 @@ const Home: Component = () => {
               please contact me with one of the following means:
             </p>
           </Profile>
-          <div className={styles.graphic}>[something]</div>
+          <div className={styles.graphic}>
+            <PixelatedEthereum />
+          </div>
         </header>
       }
     >

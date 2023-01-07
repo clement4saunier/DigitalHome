@@ -15,18 +15,6 @@
     grid-template-columns: 1fr;
 }
 
-.lifted {
-    display: flex;
-    height: 0;
-    align-items: center;
-    width: 100%;
-    /* padding-bottom: calc(191px / 2); */
-}
-
-.lifted > * {
-    width: inherit;
-}
-
 .divider {
   border-bottom: 2px solid var(--color-border-bottom);
   height: var(--space-xl);
@@ -34,9 +22,8 @@
 
 .graphic {
     flex: 1;
+    height: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
     color: var(--color-border-bottom);
 }
 
