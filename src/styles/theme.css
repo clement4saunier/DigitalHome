@@ -1,8 +1,8 @@
 :root {
     /* primary */
-    --color-background: #1c1d21;
-    --color-background-light: #2e3036;
-    --color-background-dark:rgb(7, 7, 7);
+    --color-background: #282a31;
+    --color-background-light: rgb(30, 31, 39);
+    --color-background-dark:#1a1b1f;
     --color-text: white;
     --color-text-light: #bbbbbb;
     
@@ -29,17 +29,17 @@
     --space-xl: 32px;
   
     /* shapes */
-    --radius-s: 4px;
-    --radius-m: 8px;
-    --radius-l: 16px;
+    --radius-s: 0px;
+    --radius-m: 4px;
+    --radius-l: 0px;
 
     /* border */
     --width-border: 2px;
-    --color-border: rgba(255, 255, 255, 0.103);
-    --color-border-top: rgb(255 255 255 / 16%);
-    --color-border-bottom: rgba(255, 255, 255, 0.103);
-    --color-border-left: rgba(255, 255, 255, 0.103);
-    --color-border-right: rgba(255, 255, 255, 0.103);
+    --color-border: #bfcdfa5d;
+    --color-border-top: #bfcdfa5d;
+    --color-border-bottom: #b6c7fc33;
+    --color-border-left: #bfcdfa5d;
+    --color-border-right: #b6c7fc33;
   
     /* animation */
     --duration-fast: 100ms;

@@ -70,12 +70,12 @@ footer {
   box-shadow: 0 4px 24px 0 rgba(39, 38, 38, 0.226);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  border-radius: 10px;
+  border-radius: var(--radius-m);
   background: linear-gradient(
-    0deg,
+    -2deg,
     #2e30368a 10%,
     #2e30368a 50%,
-    #3032388a 95%
+    #666d8824 95%
   );
 }
 
