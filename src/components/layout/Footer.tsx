@@ -2,7 +2,7 @@ import type { Component } from "solid-js";
 
 const Footer: Component = () => (
   <footer>
-    <div>This website is open-source, feel free to take inspiration from it.</div>
+    <div>last updated Jan. 2023 - <a href="https://github.com/clement4saunier/DigitalHome">source</a></div>
   </footer>
 );
 

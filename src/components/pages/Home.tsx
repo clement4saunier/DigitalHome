@@ -45,8 +45,9 @@ const Home: Component = () => {
             ref={liftedProfileRef}
             footer={
               <>
-                <button>LinkedIn</button>
-                <button>Mail</button>
+                <form action="https://www.linkedin.com/in/cl%C3%A9ment-saunier-211453156/" target="_blank">
+                  <button>LinkedIn</button>
+                </form>
               </>
             }
           >
@@ -61,7 +62,7 @@ const Home: Component = () => {
               <br />
               <br />
               If you're looking for someone to work on your exciting project,
-              please contact me with one of the following means:
+              please contact me trough:
             </p>
           </Profile>
           <div className={styles.graphic}>
