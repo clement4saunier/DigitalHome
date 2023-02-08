@@ -15,8 +15,13 @@ footer > *,
   margin-inline: auto;
 }
 
+h1, h2, h3, h4, h5, button {
+  font-family: "Space Grotesk";
+}
+
 p {
   color: var(--color-foreground-light);
+  font-family: "Space Grotesk Light";
 }
 
 header {

@@ -1,3 +1,21 @@
+@font-face {
+  font-family: "Space Grotesk";
+  src: local("Space Grotesk"),
+    url("../assets/fonts/Space_Grotesk/static/SpaceGrotesk-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Space Grotesk Light";
+  src: local("Space Grotesk Light"),
+    url("../assets/fonts/Space_Grotesk/static/SpaceGrotesk-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Space Mono";
+  src: local("Space Mono"),
+    url("../assets/fonts/Space_Mono/SpaceMono-Regular.ttf") format("truetype");
+}
+
 :root {
     /* primary */
     --color-background: #282a31;
