@@ -6,6 +6,7 @@ import { RenderPixelatedPass } from "three/addons/postprocessing/RenderPixelated
 import { GUI } from "three/addons/libs/lil-gui.module.min.js";
 
 import styles from "./PixelatedEthereum.module.css";
+import { createSignal } from "solid-js";
 
 const PixelatedEthereum: Component = () => {
   let canvasRef;
@@ -14,11 +15,233 @@ const PixelatedEthereum: Component = () => {
     renderer,
     composer,
     crystalMesh,
-    ethTopCrystalMesh,
-    ethBottomCrystalMesh,
-    clock,
-    controls;
+    material = new THREE.MeshPhongMaterial({
+      color: 0x4b548d,
+      emissive: 0x62688d,
+      shininess: 10,
+      specular: 0x62688d
+    }),
+    clock;
   let gui, params;
+
+  const meshes = [createCrystalMesh, createWebMesh, createVideoGameMesh];
+  const [meshStep, setMeshStep] = createSignal(0);
+
+  function createCrystalMesh() {
+    const crystalSize = 1;
+    const crystalHeight = 3;
+    const crystalBaseHeight = 0.15;
+    const uv = [0, 1];
+
+    var geom = new THREE.BufferGeometry();
+
+    const norm = {
+      front: [0, 0, 1],
+      right: [1, 0, 0],
+      back: [0, 0, -1],
+      bottom: [0, -1, 0],
+      left: [-1, 0, 0]
+    };
+
+    const vertices = [
+      // front
+      {
+        pos: [-crystalSize, crystalBaseHeight, crystalSize],
+        norm: norm.front,
+        uv
+      },
+      {
+        pos: [crystalSize, crystalBaseHeight, crystalSize],
+        norm: norm.front,
+        uv
+      },
+      { pos: [0, crystalHeight, 0], norm: norm.front, uv },
+
+      // left
+      { pos: [0, crystalHeight, 0], norm: norm.left, uv },
+      {
+        pos: [-crystalSize, crystalBaseHeight, -crystalSize],
+        norm: norm.left,
+        uv
+      },
+      {
+        pos: [-crystalSize, crystalBaseHeight, crystalSize],
+        norm: norm.left,
+        uv
+      },
+
+      // right
+      {
+        pos: [crystalSize, crystalBaseHeight, crystalSize],
+        norm: norm.right,
+        uv
+      },
+      {
+        pos: [crystalSize, crystalBaseHeight, -crystalSize],
+        norm: norm.right,
+        uv
+      },
+      { pos: [0, crystalHeight, 0], norm: norm.right, uv },
+
+      // back
+      { pos: [0, crystalHeight, 0], norm: norm.back, uv },
+      {
+        pos: [crystalSize, crystalBaseHeight, -crystalSize],
+        norm: norm.back,
+        uv
+      },
+      {
+        pos: [-crystalSize, crystalBaseHeight, -crystalSize],
+        norm: norm.back,
+        uv
+      },
+
+      // bottom
+      {
+        pos: [-crystalSize, crystalBaseHeight, -crystalSize],
+        norm: norm.bottom,
+        uv
+      },
+      {
+        pos: [crystalSize, crystalBaseHeight, -crystalSize],
+        norm: norm.bottom,
+        uv
+      },
+      {
+        pos: [-crystalSize, crystalBaseHeight, crystalSize],
+        norm: norm.bottom,
+        uv
+      },
+
+      {
+        pos: [-crystalSize, crystalBaseHeight, crystalSize],
+        norm: norm.bottom,
+        uv
+      },
+      {
+        pos: [crystalSize, crystalBaseHeight, -crystalSize],
+        norm: norm.bottom,
+        uv
+      },
+      {
+        pos: [crystalSize, crystalBaseHeight, crystalSize],
+        norm: norm.bottom,
+        uv
+      }
+    ];
+
+    const positions = [];
+    const normals = [];
+    const uvs = [];
+    for (const vertex of vertices) {
+      positions.push(...vertex.pos);
+      normals.push(...vertex.norm);
+      uvs.push(...vertex.uv);
+    }
+
+    const ethGeometry = new THREE.BufferGeometry();
+    const positionNumComponents = 3;
+    const normalNumComponents = 3;
+    const uvNumComponents = 2;
+    ethGeometry.attributes.position = new THREE.BufferAttribute(
+      new Float32Array(positions),
+      positionNumComponents
+    );
+
+    ethGeometry.attributes.normal = new THREE.BufferAttribute(
+      new Float32Array(normals),
+      normalNumComponents
+    );
+    ethGeometry.attributes.uv = new THREE.BufferAttribute(
+      new Float32Array(uvs),
+      uvNumComponents
+    );
+
+    material = new THREE.MeshPhongMaterial({
+      color: 0xffffff,
+      emissive: 0x62688d,
+      shininess: 10,
+      specular: 0x62688d
+    })
+
+    const ethTopCrystalMesh = new THREE.Mesh(
+      ethGeometry,
+      material
+    );
+    ethTopCrystalMesh.receiveShadow = true;
+    ethTopCrystalMesh.castShadow = true;
+    ethTopCrystalMesh.rotation.y = Math.PI / 4;
+
+    const ethBottomCrystalMesh = new THREE.Mesh(
+      ethGeometry,
+      material
+    );
+    ethBottomCrystalMesh.receiveShadow = true;
+    ethBottomCrystalMesh.castShadow = true;
+    ethBottomCrystalMesh.rotation.z = Math.PI / 1;
+    ethBottomCrystalMesh.rotation.y = Math.PI / 4;
+
+    const mesh = new THREE.Group();
+
+
+    mesh.add(ethTopCrystalMesh);
+    mesh.add(ethBottomCrystalMesh);
+    return mesh;
+  }
+
+  function createWebMesh() {
+
+    const geometry = new THREE.IcosahedronGeometry( 2, 0);
+
+    material = new THREE.MeshPhongMaterial({
+      color: 0x00AAD6,
+      emissive: 0x62688d,
+      shininess: 10,
+      specular: 0x62688d
+    })
+
+    const mesh = new THREE.Mesh(
+      geometry,
+      material
+    );
+    mesh.receiveShadow = true;
+    mesh.castShadow = true;
+    mesh.rotation.y = Math.PI / 4;
+
+
+    return mesh;
+  }
+
+  function createVideoGameMesh() {
+    const geometry = new THREE.DodecahedronGeometry( 2, 0);
+
+    material = new THREE.MeshPhongMaterial({
+      color: 0xa95922,
+      emissive: 0x62688d,
+      shininess: 10,
+      specular: 0xd7a887
+    })
+
+    const mesh = new THREE.Mesh(
+      geometry,
+      material
+    );
+    mesh.receiveShadow = true;
+    mesh.castShadow = true;
+    mesh.rotation.y = Math.PI / 4;
+
+
+    return mesh;}
+
+  function onCanvasClick() {
+    let newMeshStep = meshStep() + 1;
+    if (newMeshStep >= meshes.length) newMeshStep =0;
+    setMeshStep(newMeshStep);
+    scene.remove(crystalMesh);
+    crystalMesh = meshes[meshStep()]();
+    scene.add(crystalMesh);
+    console.log("CLICK");
+  }
 
   setTimeout(() => {
     init();
@@ -35,9 +258,9 @@ const PixelatedEthereum: Component = () => {
         0.1,
         1000
       );
-      camera.position.y = 3;
-      camera.position.z = 3;
-      camera.zoom = 0.2;  
+      camera.position.y = 4;
+      camera.position.z = 5;
+      camera.zoom = 0.2;
 
       scene = new THREE.Scene();
 
@@ -66,181 +289,11 @@ const PixelatedEthereum: Component = () => {
 
       composer.addPass(renderPixelatedPass);
 
-      controls = new OrbitControls(camera, renderer.domElement);
-      controls.target.set(0, 0, 0);
-      //       controls.autoRotate = true
-      // controls.autoRotateSpeed = 10
-      controls.enableDamping = true;
-      controls.enableZoom = false;
-      controls.dampingFactor = 0.125;
-
-      // textures
-
-      const loader = new THREE.TextureLoader();
-
       // meshes
 
-      var geom = new THREE.BufferGeometry();
-
-      const norm = {
-        front: [0, 0, 1],
-        right: [1, 0, 0],
-        back: [0, 0, -1],
-        bottom: [0, -1, 0],
-        left: [-1, 0, 0]
-      };
-
-      const crystalSize = 1;
-      const crystalHeight = 3;
-      const crystalBaseHeight = 0.15;
-      const uv = [0, 1];
-
-      const vertices = [
-        // front
-        {
-          pos: [-crystalSize, crystalBaseHeight, crystalSize],
-          norm: norm.front,
-          uv
-        },
-        {
-          pos: [crystalSize, crystalBaseHeight, crystalSize],
-          norm: norm.front,
-          uv
-        },
-        { pos: [0, crystalHeight, 0], norm: norm.front, uv },
-
-        // left
-        { pos: [0, crystalHeight, 0], norm: norm.left, uv },
-        {
-          pos: [-crystalSize, crystalBaseHeight, -crystalSize],
-          norm: norm.left,
-          uv
-        },
-        {
-          pos: [-crystalSize, crystalBaseHeight, crystalSize],
-          norm: norm.left,
-          uv
-        },
-
-        // right
-        {
-          pos: [crystalSize, crystalBaseHeight, crystalSize],
-          norm: norm.right,
-          uv
-        },
-        {
-          pos: [crystalSize, crystalBaseHeight, -crystalSize],
-          norm: norm.right,
-          uv
-        },
-        { pos: [0, crystalHeight, 0], norm: norm.right, uv },
-
-        // back
-        { pos: [0, crystalHeight, 0], norm: norm.back, uv },
-        {
-          pos: [crystalSize, crystalBaseHeight, -crystalSize],
-          norm: norm.back,
-          uv
-        },
-        {
-          pos: [-crystalSize, crystalBaseHeight, -crystalSize],
-          norm: norm.back,
-          uv
-        },
-
-        // bottom
-        {
-          pos: [-crystalSize, crystalBaseHeight, -crystalSize],
-          norm: norm.bottom,
-          uv
-        },
-        {
-          pos: [crystalSize, crystalBaseHeight, -crystalSize],
-          norm: norm.bottom,
-          uv
-        },
-        {
-          pos: [-crystalSize, crystalBaseHeight, crystalSize],
-          norm: norm.bottom,
-          uv
-        },
-
-        {
-          pos: [-crystalSize, crystalBaseHeight, crystalSize],
-          norm: norm.bottom,
-          uv
-        },
-        {
-          pos: [crystalSize, crystalBaseHeight, -crystalSize],
-          norm: norm.bottom,
-          uv
-        },
-        {
-          pos: [crystalSize, crystalBaseHeight, crystalSize],
-          norm: norm.bottom,
-          uv
-        }
-      ];
-
-      const positions = [];
-      const normals = [];
-      const uvs = [];
-      for (const vertex of vertices) {
-        positions.push(...vertex.pos);
-        normals.push(...vertex.norm);
-        uvs.push(...vertex.uv);
-      }
-
-      const ethGeometry = new THREE.BufferGeometry();
-      const positionNumComponents = 3;
-      const normalNumComponents = 3;
-      const uvNumComponents = 2;
-      console.log("geometry", ethGeometry);
-      ethGeometry.attributes.position = new THREE.BufferAttribute(
-        new Float32Array(positions),
-        positionNumComponents
-      );
-
-      ethGeometry.attributes.normal = new THREE.BufferAttribute(
-        new Float32Array(normals),
-        normalNumComponents
-      );
-      ethGeometry.attributes.uv = new THREE.BufferAttribute(
-        new Float32Array(uvs),
-        uvNumComponents
-      );
-
-      ethTopCrystalMesh = new THREE.Mesh(
-        ethGeometry,
-        new THREE.MeshPhongMaterial({
-          color: 0x4b548d,
-          emissive: 0x62688d,
-          shininess: 10,
-          specular: 0x62688d
-        })
-      );
-      ethTopCrystalMesh.receiveShadow = true;
-      ethTopCrystalMesh.castShadow = true;
-      ethTopCrystalMesh.rotation.y = Math.PI / 4;
-
-      ethBottomCrystalMesh = new THREE.Mesh(
-        ethGeometry,
-        new THREE.MeshPhongMaterial({
-          color: 0x444971,
-          emissive: 0x62688d,
-          shininess: 10,
-          specular: 0x62688d
-        })
-      );
-      ethBottomCrystalMesh.receiveShadow = true;
-      ethBottomCrystalMesh.castShadow = true;
-      ethBottomCrystalMesh.rotation.z = Math.PI / 1;
-      ethBottomCrystalMesh.rotation.y = Math.PI / 4;
-
-      crystalMesh = new THREE.Group();
-      crystalMesh.add(ethTopCrystalMesh);
-      crystalMesh.add(ethBottomCrystalMesh);
+      crystalMesh = createCrystalMesh();
       scene.add(crystalMesh);
+      camera.lookAt(crystalMesh.position);
 
       // lights
 
@@ -282,12 +335,12 @@ const PixelatedEthereum: Component = () => {
       requestAnimationFrame(animate);
 
       const t = clock.getElapsedTime();
-
-      controls.update();
-
-      // crystalMesh.material.emissiveIntensity = Math.sin(t * 3) * 0.5 + 0.5;
+      
+      
+      material.emissiveIntensity = Math.sin(t * 2) * 0.3 + 0.9;
       crystalMesh.position.y = Math.sin(t * 2) * 0.05;
       // crystalMesh.rotation.y = stopGoEased(t, 2, 4) * 2 * Math.PI;
+      crystalMesh.rotation.x = Math.sin(t * 1) * 0.05 - 0.3;
 
       const rendererSize = renderer.getSize(new THREE.Vector2());
       const aspectRatio = rendererSize.x / rendererSize.y;
@@ -378,7 +431,8 @@ const PixelatedEthereum: Component = () => {
     }
   });
 
-  return <div ref={canvasRef} className={styles.canvas}></div>;
+
+  return <div ref={canvasRef} className={styles.canvas} onClick={onCanvasClick}></div>;
 };
 
 export default PixelatedEthereum;
