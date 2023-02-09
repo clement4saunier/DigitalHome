@@ -6,9 +6,12 @@ import { RenderPixelatedPass } from "three/addons/postprocessing/RenderPixelated
 import { GUI } from "three/addons/libs/lil-gui.module.min.js";
 
 import styles from "./PixelatedEthereum.module.css";
-import { createSignal } from "solid-js";
+import { createEffect, createMemo, createSignal } from "solid-js";
+import { useTheme } from "../context/ThemeProvider";
 
 const PixelatedEthereum: Component = () => {
+  const { theme } = useTheme();
+
   let canvasRef;
   let camera,
     scene,
@@ -24,16 +27,26 @@ const PixelatedEthereum: Component = () => {
     clock;
   let gui, params;
 
-  const meshes = [createCrystalMesh, createWebMesh, createVideoGameMesh];
+  const { cycleTheme } = useTheme();
+
+  const meshes = { "blockchain": createCrystalMesh(), "web": createWebMesh(), "videogame": createVideoGameMesh() };
   const [meshStep, setMeshStep] = createSignal(0);
+
+  createEffect(() => {
+    const [mesh, mat] = meshes[theme()];
+    if (!scene) return;
+    scene.remove(crystalMesh);
+    console.log("msh", mesh);
+    crystalMesh = mesh;
+    material = mat;
+    scene.add(crystalMesh);
+  });
 
   function createCrystalMesh() {
     const crystalSize = 1;
     const crystalHeight = 3;
     const crystalBaseHeight = 0.15;
     const uv = [0, 1];
-
-    var geom = new THREE.BufferGeometry();
 
     const norm = {
       front: [0, 0, 1],
@@ -157,16 +170,16 @@ const PixelatedEthereum: Component = () => {
       uvNumComponents
     );
 
-    material = new THREE.MeshPhongMaterial({
-      color: 0xffffff,
-      emissive: 0x62688d,
+    const mat = new THREE.MeshPhongMaterial({
+      color: 0xa88cc7,
+      emissive: 0xa27bcc,
       shininess: 10,
-      specular: 0x62688d
+      specular: 0xa88cc7
     })
 
     const ethTopCrystalMesh = new THREE.Mesh(
       ethGeometry,
-      material
+      mat
     );
     ethTopCrystalMesh.receiveShadow = true;
     ethTopCrystalMesh.castShadow = true;
@@ -174,7 +187,7 @@ const PixelatedEthereum: Component = () => {
 
     const ethBottomCrystalMesh = new THREE.Mesh(
       ethGeometry,
-      material
+      mat
     );
     ethBottomCrystalMesh.receiveShadow = true;
     ethBottomCrystalMesh.castShadow = true;
@@ -186,61 +199,56 @@ const PixelatedEthereum: Component = () => {
 
     mesh.add(ethTopCrystalMesh);
     mesh.add(ethBottomCrystalMesh);
-    return mesh;
+    return [mesh, mat];
   }
 
   function createWebMesh() {
 
-    const geometry = new THREE.IcosahedronGeometry( 2, 0);
+    const geometry = new THREE.IcosahedronGeometry(2, 0);
 
-    material = new THREE.MeshPhongMaterial({
+    const mat = new THREE.MeshPhongMaterial({
       color: 0x00AAD6,
-      emissive: 0x62688d,
+      emissive: 0x738ba1,
       shininess: 10,
-      specular: 0x62688d
+      specular: 0x00AAD6
     })
 
     const mesh = new THREE.Mesh(
       geometry,
-      material
+      mat
     );
     mesh.receiveShadow = true;
     mesh.castShadow = true;
     mesh.rotation.y = Math.PI / 4;
 
 
-    return mesh;
+    return [mesh, mat];
   }
 
   function createVideoGameMesh() {
-    const geometry = new THREE.DodecahedronGeometry( 2, 0);
+    const geometry = new THREE.DodecahedronGeometry(2, 0);
 
-    material = new THREE.MeshPhongMaterial({
-      color: 0xa95922,
-      emissive: 0x62688d,
+    const mat = new THREE.MeshPhongMaterial({
+      color: 0x54c233,
+      emissive: 0x6cdf49,
       shininess: 10,
-      specular: 0xd7a887
+      specular: 0x54c233
     })
 
     const mesh = new THREE.Mesh(
       geometry,
-      material
+      mat
     );
     mesh.receiveShadow = true;
     mesh.castShadow = true;
     mesh.rotation.y = Math.PI / 4;
 
 
-    return mesh;}
+    return [mesh, mat];
+  }
 
   function onCanvasClick() {
-    let newMeshStep = meshStep() + 1;
-    if (newMeshStep >= meshes.length) newMeshStep =0;
-    setMeshStep(newMeshStep);
-    scene.remove(crystalMesh);
-    crystalMesh = meshes[meshStep()]();
-    scene.add(crystalMesh);
-    console.log("CLICK");
+    cycleTheme();
   }
 
   setTimeout(() => {
@@ -291,7 +299,10 @@ const PixelatedEthereum: Component = () => {
 
       // meshes
 
-      crystalMesh = createCrystalMesh();
+      crystalMesh = meshes[theme()][0];
+      crystalMesh.scale.x = 2;
+      crystalMesh.scale.y = 2;
+      crystalMesh.scale.z = 2;
       scene.add(crystalMesh);
       camera.lookAt(crystalMesh.position);
 
@@ -335,12 +346,18 @@ const PixelatedEthereum: Component = () => {
       requestAnimationFrame(animate);
 
       const t = clock.getElapsedTime();
-      
-      
+
+
       material.emissiveIntensity = Math.sin(t * 2) * 0.3 + 0.9;
       crystalMesh.position.y = Math.sin(t * 2) * 0.05;
       // crystalMesh.rotation.y = stopGoEased(t, 2, 4) * 2 * Math.PI;
       crystalMesh.rotation.x = Math.sin(t * 1) * 0.05 - 0.3;
+
+      const scale = Math.sin(t * 2) * 0.01 + 1.5;
+
+      crystalMesh.scale.x = scale;
+      crystalMesh.scale.z = scale;
+      crystalMesh.scale.y = scale;
 
       const rendererSize = renderer.getSize(new THREE.Vector2());
       const aspectRatio = rendererSize.x / rendererSize.y;

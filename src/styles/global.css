@@ -15,6 +15,10 @@ footer > *,
   margin-inline: auto;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 h1, h2, h3, h4, h5, button {
   font-family: "Space Grotesk";
 }
@@ -28,7 +32,7 @@ header {
   min-height: calc(100vh - var(--space-xl));
   background-color: var(--color-background-dark);
 
-  border-bottom: 2px solid var(--color-border-top);
+  border-bottom: 2px solid var(--color-border);
   flex-direction: column-reverse;
   display: flex;
   padding-bottom: var(--space-xl);
@@ -41,9 +45,9 @@ footer {
   padding-top: var(--space-l);
   padding-bottom: var(--space-l);
   margin-bottom: 0;
-  color: var(--color-border-top);
+  color: var(--color-border);
   background-color: var(--color-background-dark);
-  border-top: 2px solid var(--color-border-top);
+  border-top: 2px solid var(--color-border);
   flex-direction: column-reverse;
   display: flex;
 }
@@ -59,29 +63,21 @@ footer {
 .divider > * {
   height: calc(var(--space-l));
   width: 100%;
-  border-bottom: 2px solid var(--color-border-bottom);
+  border-bottom: 2px solid var(--color-border);
 }
 
 .card {
   border-radius: var(--radius-m);
-  border-top-color: var(--color-border-top);
-  border-left-color: var(--color-border-left);
-  border-right-color: var(--color-border-right);
-  border-bottom-color: var(--color-border-bottom);
+  border-color: var(--color-border);
   border-width: var(--width-border);
   border-style: solid;
   /* background-color: #2e30368a; */
   padding: var(--space-l);
-  box-shadow: 0 4px 24px 0 rgba(39, 38, 38, 0.226);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  box-shadow: var(--shadow-default);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
   border-radius: var(--radius-m);
-  background: linear-gradient(
-    -2deg,
-    #2e30368a 10%,
-    #2e30368a 50%,
-    #666d8824 95%
-  );
+  background: var(--background-default);
 }
 
 button {
@@ -96,6 +92,15 @@ button {
   cursor: pointer;
   transition-duration: var(--duration-fast);
   margin-inline: var(--space-s);
+}
+
+button {
+  display: flex;
+  gap: var(--space-m);
+}
+
+button svg {
+  align-self: center;
 }
 
 button:hover {
