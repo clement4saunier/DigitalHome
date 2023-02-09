@@ -78,6 +78,8 @@ footer {
   -webkit-backdrop-filter: blur(1px);
   border-radius: var(--radius-m);
   background: var(--background-default);
+  transition-duration: 200ms;
+
 }
 
 button {

@@ -14,6 +14,7 @@ const PixelatedEthereum: Component = () => {
 
   let canvasRef;
   let camera,
+    parent,
     scene,
     renderer,
     composer,
@@ -30,16 +31,23 @@ const PixelatedEthereum: Component = () => {
   const { cycleTheme } = useTheme();
 
   const meshes = { "blockchain": createCrystalMesh(), "web": createWebMesh(), "videogame": createVideoGameMesh() };
-  const [meshStep, setMeshStep] = createSignal(0);
+  const [hovered, setHovered] = createSignal(false);
 
   createEffect(() => {
     const [mesh, mat] = meshes[theme()];
     if (!scene) return;
-    scene.remove(crystalMesh);
+    parent.remove(crystalMesh);
     console.log("msh", mesh);
     crystalMesh = mesh;
     material = mat;
-    scene.add(crystalMesh);
+    parent.add(crystalMesh);
+  });
+
+  createEffect(() => {
+    if (theme()) {
+      setHovered(true)
+      setTimeout(() => setHovered(false), 100);
+    }
   });
 
   function createCrystalMesh() {
@@ -271,6 +279,7 @@ const PixelatedEthereum: Component = () => {
       camera.zoom = 0.2;
 
       scene = new THREE.Scene();
+      parent = new THREE.Group();
 
       clock = new THREE.Clock();
 
@@ -303,7 +312,9 @@ const PixelatedEthereum: Component = () => {
       crystalMesh.scale.x = 2;
       crystalMesh.scale.y = 2;
       crystalMesh.scale.z = 2;
-      scene.add(crystalMesh);
+
+      parent.add(crystalMesh);
+      scene.add(parent);
       camera.lookAt(crystalMesh.position);
 
       // lights
@@ -353,7 +364,14 @@ const PixelatedEthereum: Component = () => {
       // crystalMesh.rotation.y = stopGoEased(t, 2, 4) * 2 * Math.PI;
       crystalMesh.rotation.x = Math.sin(t * 1) * 0.05 - 0.3;
 
+      
       const scale = Math.sin(t * 2) * 0.01 + 1.5;
+
+      if (parent) {
+        parent.scale.x = hovered() ? 0.93 : 1;
+        parent.scale.y = hovered() ? 0.93 : 1;
+        parent.scale.z = hovered() ? 0.93 : 1;
+      }
 
       crystalMesh.scale.x = scale;
       crystalMesh.scale.z = scale;
@@ -449,7 +467,7 @@ const PixelatedEthereum: Component = () => {
   });
 
 
-  return <div ref={canvasRef} className={styles.canvas} onClick={onCanvasClick}></div>;
+  return <div ref={canvasRef} className={styles.canvas} onPointerDown={() => setHovered(true)} onPointerUp={() => setHovered(false)} onClick={onCanvasClick}></div>;
 };
 
 export default PixelatedEthereum;
