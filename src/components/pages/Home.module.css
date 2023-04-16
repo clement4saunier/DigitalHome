@@ -81,8 +81,19 @@
     background-color: rgba(0, 0, 0, 0.178);
 }
 
+.trinity > *:not(.highlight) h2 {
+    color: #5a5a5a;
+    text-shadow: none;
+}
+
+.trinity > *:not(.highlight) p {
+    color: #4e4e4e;
+}
+
+
 .brief b {
     color: var(--color-accent);
+    text-shadow: 0 0 5px var(--color-shadow);
 }
 
 .socials {

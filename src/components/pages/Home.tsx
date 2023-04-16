@@ -47,7 +47,6 @@ const Home: Component = () => {
   }
 
   function onMouseEnter(idx) {
-    console.log("idx", idx);
     setTheme(idx);
   }
 

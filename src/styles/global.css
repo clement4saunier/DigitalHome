@@ -21,6 +21,15 @@ footer > *,
 
 h1, h2, h3, h4, h5, button {
   font-family: "Space Grotesk";
+  text-shadow: 0 0 10px var(--color-accent);
+}
+
+h1, h2 {
+  text-shadow: 0 0 10px var(--color-accent);
+}
+
+h3, h4, button {
+  text-shadow: 0 0 5px var(--color-accent);
 }
 
 p {
@@ -68,7 +77,6 @@ footer {
 
 .card {
   border-radius: var(--radius-m);
-  border-color: var(--color-border);
   border-width: var(--width-border);
   border-style: solid;
   /* background-color: #2e30368a; */
@@ -80,11 +88,23 @@ footer {
   background: var(--background-default);
   transition-duration: 200ms;
 
+  border-top-color: var(--color-border-top);
+  border-left-color: var(--color-border-left);
+  border-right-color: var(--color-border-right);
+  border-bottom-color: var(--color-border-bottom);
+  outline: var(--width-border) solid var(--color-outline);
+
 }
 
 button {
   border-radius: var(--radius-m);
-  border-color: var(--color-border);
+
+  border-top-color: var(--color-border-top);
+  border-left-color: var(--color-border-left);
+  border-right-color: var(--color-border-right);
+  border-bottom-color: var(--color-border-bottom);
+  outline: var(--width-border) solid var(--color-outline);
+
   border-width: var(--width-border);
   border-style: solid;
   background-color: var(--color-background);

@@ -37,17 +37,11 @@ const PixelatedEthereum: Component = () => {
     const [mesh, mat] = meshes[theme()];
     if (!scene) return;
     parent.remove(crystalMesh);
-    console.log("msh", mesh);
     crystalMesh = mesh;
     material = mat;
+    setHovered(true)
     parent.add(crystalMesh);
-  });
-
-  createEffect(() => {
-    if (theme()) {
-      setHovered(true)
-      setTimeout(() => setHovered(false), 100);
-    }
+    setTimeout(() => setHovered(false), 100);
   });
 
   function createCrystalMesh() {
@@ -347,9 +341,11 @@ const PixelatedEthereum: Component = () => {
       const aspectRatio = canvasRef.clientWidth / canvasRef.clientHeight;
       camera.left = -aspectRatio;
       camera.right = aspectRatio;
+      camera.top = aspectRatio;
+      camera.right = aspectRatio;
       camera.updateProjectionMatrix();
 
-      renderer.setSize(canvasRef.clientWidth, canvasRef.clientHeight);
+      renderer.setSize(100, 100);
       composer.setSize(canvasRef.clientWidth, canvasRef.clientHeight);
     }
 
@@ -467,7 +463,7 @@ const PixelatedEthereum: Component = () => {
   });
 
 
-  return <div ref={canvasRef} className={styles.canvas} onPointerDown={() => setHovered(true)} onPointerUp={() => setHovered(false)} onClick={onCanvasClick}></div>;
+  return <div ref={canvasRef} className={styles.canvas} onPointerDown={() => setHovered(true)} onPointerOut={() => setHovered(false)} onClick={onCanvasClick}></div>;
 };
 
 export default PixelatedEthereum;

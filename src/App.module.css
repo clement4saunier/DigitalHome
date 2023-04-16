@@ -24,8 +24,8 @@
   opacity: .015;  
   pointer-events: none;
   background: url('./assets/noise.jpg');
-
 }
+
 .container, .App{
   display: flex;
   align-items: center;
