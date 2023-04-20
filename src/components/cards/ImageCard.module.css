@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: 96px auto;
   gap: var(--space-l);
+  position: relative;
 }
 
 @media only screen and (max-width: 700px) {
@@ -29,4 +30,10 @@
   flex-direction: column;
   justify-content: space-between;
   gap: var(--space-l);
+}
+
+.corner {
+  position: absolute;
+  right: 0;
+  padding: var(--space-l);
 }
