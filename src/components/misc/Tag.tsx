@@ -16,6 +16,7 @@ const colors = {
     "Ipfs": {background: "#399293", color: "white"},
     "Python": {background: "#266c97", color: "#ffda62"},
     "Haskell": {background: "#914f89", color: "white"},
+    "Vue.js": {background: "#44BF88", color: "#34435B"},
 }
 
 const Tag: Component = ({children}) => (

@@ -36,4 +36,5 @@
   position: absolute;
   right: 0;
   padding: var(--space-l);
+  display: flex;
 }
